@@ -4,14 +4,16 @@ import NavBar from './components/NavBar'
 
 const App = () => {
   
-  const {saludo} = React.useContext(ChatContext)
-  return (
+  const {usuario} = React.useContext(ChatContext)
+  return usuario !== null? (
     <div>
       <NavBar/>
-     {saludo}
+      <pre>
+        
+      </pre>
       <h1>Hola</h1>
     </div>
-  )
+  ): ('<div>Cargando ... </div>') 
 }
 
 export default App
