@@ -8,10 +8,8 @@ const App = () => {
   return usuario !== null? (
     <div>
       <NavBar/>
-      <pre>
-        
-      </pre>
-      <h1>Hola</h1>
+      
+      <h1>Hola  "{usuario.estado}"</h1>
     </div>
   ): ('<div>Cargando ... </div>') 
 }

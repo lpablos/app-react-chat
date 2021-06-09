@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import {auth} from '../firebase'
+import {auth, provider} from '../firebase'
 export const ChatContext = React.createContext()
 
 const ChatProvide = (props) => {
@@ -10,6 +10,7 @@ const ChatProvide = (props) => {
         estado: null
     }
     const [usuario, setUsuario] = useState(dataUsuario)
+
     useEffect(() => {
         detectarUsuario()
     }, [])
@@ -31,8 +32,25 @@ const ChatProvide = (props) => {
             }
         })
     }
+
+    const ingresoUsuario = async () =>{
+        try {
+            await auth.signInWithPopup(provider)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const cerrarSession = async () =>{
+        try {
+            await auth.signOut()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
-        <ChatContext.Provider value={{usuario}}>       
+        <ChatContext.Provider value={{usuario, ingresoUsuario, cerrarSession}}>       
             {props.children}            
         </ChatContext.Provider>
     )
